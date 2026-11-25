@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ember & Oak — Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#home" class="brand-lockup">
+      <span class="crown-mark">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 18h18l-1.5-9-4 3.5L12 6 8.5 12.5l-4-3.5L3 18Z" fill="#1B1407" stroke="#1B1407" stroke-width="1" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand-text"><span class="brand-name">Ember <span>&amp;</span> Oak</span><span class="brand-tag">The art of slow dining</span></span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#home" data-sec="home">Home</a>
+      <a href="#services" data-sec="services">Services</a>
+      <a href="#menu" data-sec="menu">Menu</a>
+      <a href="#gallery" data-sec="gallery">Gallery</a>
+      <a href="#reserve" data-sec="reserve">Reserve</a>
+      <a href="#contact" data-sec="contact">Contact</a>
+    </nav>
+    <button class="btn outline-gold nav-cta" id="navReserveBtn">Reserve now</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-content reveal">
+      <p class="hero-badge">★ &nbsp;Loved by locals since 2014 &nbsp;·&nbsp; Chennai's slow-food table&nbsp; ★</p>
+      <p class="hero-welcome">Welcome to</p>
+      <h1 class="hero-wordmark">Ember <span>&amp;</span> Oak</h1>
+      <p class="hero-tagline">The art of slow dining</p>
+      <p class="lede">Where wood smoke meets patience. Expect a short seasonal menu, rare ingredients treated simply, and a dining room that never rushes the evening.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn accent">Explore menu <span aria-hidden="true">🍴</span></a>
+        <a href="#reserve" class="btn ghost-light">Book a table <span aria-hidden="true">📅</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="wrap">
+      <p class="eyebrow reveal">What we offer</p>
+      <h2 class="reveal">More than a dinner table</h2>
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="section alt">
+    <div class="wrap">
+      <p class="eyebrow reveal">The menu</p>
+      <h2 class="reveal">A short list, done properly</h2>
+      <div class="menu-tabs" id="menuTabs"></div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section">
+    <div class="wrap">
+      <p class="eyebrow reveal">Gallery</p>
+      <h2 class="reveal">A feel for the room</h2>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section alt">
+    <div class="wrap narrow">
+      <p class="eyebrow reveal">Guests say</p>
+      <div class="testimonial-card reveal" id="testimonialCard"></div>
+      <div class="testimonial-dots" id="testimonialDots"></div>
+    </div>
+  </section>
+
+  <!-- RESERVE -->
+  <section id="reserve" class="section">
+    <div class="wrap">
+      <p class="eyebrow reveal">Reservations</p>
+      <h2 class="reveal">Book your table</h2>
+      <div class="reserve-grid">
+        <form id="reserveForm" class="reserve-form reveal">
+          <div class="field-row">
+            <div class="field">
+              <label>Name</label>
+              <input type="text" id="rName" required>
+            </div>
+            <div class="field">
+              <label>Guests</label>
+              <select id="rGuests">
+                <option>1</option><option>2</option><option selected>2</option>
+                <option>3</option><option>4</option><option>5</option><option>6+</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Phone</label>
+              <input type="tel" id="rPhone" required>
+            </div>
+            <div class="field">
+              <label>Date</label>
+              <input type="date" id="rDate" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>Time slot</label>
+            <div class="slot-row" id="slotRow"></div>
+          </div>
+          <div class="field">
+            <label>Add dishes to your table (optional)</label>
+            <div class="preorder-chips" id="preorderChips"></div>
+          </div>
+          <div class="field">
+            <label>Note for the kitchen (allergies, occasion…)</label>
+            <textarea id="rNote" placeholder="Anniversary, nut allergy, window seat…"></textarea>
+          </div>
+          <button type="submit" class="btn accent" style="width:100%;">Confirm reservation</button>
+        </form>
+
+        <aside class="reserve-aside reveal">
+          <h3>Your reservations</h3>
+          <div id="myReservations"></div>
+          <div class="hours-card">
+            <h4>Hours</h4>
+            <div class="hours-row"><span>Tue – Fri</span><span>5:30pm – 11pm</span></div>
+            <div class="hours-row"><span>Sat – Sun</span><span>12pm – 11pm</span></div>
+            <div class="hours-row"><span>Monday</span><span>Closed</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section alt">
+    <div class="wrap">
+      <p class="eyebrow reveal">Find us</p>
+      <h2 class="reveal">Visit Ember &amp; Oak</h2>
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <div class="map-art" aria-hidden="true" id="mapArt"></div>
+          <div class="contact-details">
+            <div><span class="k">Address</span>14 Harrington Road, Chetpet, Chennai 600031</div>
+            <div><span class="k">Phone</span>+91 98765 43210</div>
+            <div><span class="k">Email</span>hello@emberandoak.example</div>
+          </div>
+        </div>
+        <form class="newsletter-form reveal" id="newsletterForm">
+          <h3>Get our seasonal menu drops</h3>
+          <p>One email a season, new dishes only. No spam.</p>
+          <div class="field-row">
+            <input type="email" id="newsEmail" placeholder="you@example.com" required>
+            <button class="btn accent" type="submit">Subscribe</button>
+          </div>
+          <div id="newsMsg" class="news-msg"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="brand footer-brand">Ember <span>&</span> Oak</div>
+    <div class="footer-links">
+      <a href="#menu">Menu</a><a href="#gallery">Gallery</a><a href="#reserve">Reserve</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+  <p class="fine-print">© 2026 Ember &amp; Oak. A demo restaurant site — reservations are stored only in this browser.</p>
+</footer>
+
+<div class="overlay" id="lightboxOverlay"></div>
+<div class="lightbox" id="lightbox"></div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
